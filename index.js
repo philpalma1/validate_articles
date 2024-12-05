@@ -1,4 +1,5 @@
 // This program will navigate to the Hacker News website and verify that the articles are sorted from newest to oldest
+
 const { chromium } = require("playwright");
 
 async function validateArticles() {
