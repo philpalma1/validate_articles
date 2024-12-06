@@ -2,6 +2,9 @@
 
 const { chromium } = require("playwright");
 
+// Create variable to hold the number of the out of order article
+let marker = 0;
+
 async function validateArticles() {
   // Launch browser
   const browser = await chromium.launch({ headless: false });
@@ -61,6 +64,7 @@ async function validateArticles() {
 
             // Close browser and return false if articles are out of order
             await browser.close();
+            marker = ages.length - 1;
             return false;
           };
         } else {
@@ -86,6 +90,6 @@ async function validateArticles() {
   if (await validateArticles()) {
     console.log("Articles are in order.");
   } else {
-    console.log("Articles are out of order.");
+    console.log("Articles are out of order starting with article " + marker + ".");
   };
 })();
