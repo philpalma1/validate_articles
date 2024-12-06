@@ -14,14 +14,11 @@ async function validateArticles() {
   // Give the page time to load
   await page.waitForSelector(".athing");
 
-  // Locate body of main table
-  const body = await page.locator("table#hnmain tbody tr td table");
-
-  // Get number of rows in the table
-  const totalRows = await body.locator("tr").count();
-
   // Locate the table containing the articles
   const tableLocator = await page.locator("table#hnmain tbody tr td table");
+
+  // Get number of rows in the table
+  const totalRows = await tableLocator.locator("tr").count();
 
   // Create array for storing datetimes
   let ages = new Array();
